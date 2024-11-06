@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Color Picker Pro</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Add preload for critical resources -->
+  <link rel="preload" href="popup.js" as="script">
+  <!-- Add defer to non-critical scripts -->
+  <script src="popup.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Header Section -->
+    <header class="app-header">
+      <h1 class="app-title">Color Picker Pro</h1>
+      <div class="settings-bar">
+        <button id="toggleTheme" class="icon-btn" title="Toggle Theme">
+          <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24">
+            <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
+          </svg>
+          <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24">
+            <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Color Display Section -->
+    <section class="color-display-section">
+      <div class="color-display-container">
+        <div class="color-display" id="colorDisplay"></div>
+      </div>
+      <div class="color-info">
+        <div class="color-name-display" id="colorNameDisplay"></div>
+        <div class="color-values">
+          <div class="color-value-item">
+            <span class="value-label">HEX</span>
+            <span class="value-text" id="hexValue"></span>
+          </div>
+          <div class="color-value-item">
+            <span class="value-label">HSB</span>
+            <span class="value-text" id="hsbValue"></span>
+          </div>
+          <div class="color-value-item">
+            <span class="value-label">RGB</span>
+            <span class="value-text" id="rgbValue"></span>
+          </div>
+          <div class="color-value-item">
+            <span class="value-label">HSL</span>
+            <span class="value-text" id="hslValue"></span>
+          </div>
+          <div class="color-value-item">
+            <span class="value-label">HWB</span>
+            <span class="value-text" id="hwbValue"></span>
+          </div>
+          <div class="color-value-item">
+            <span class="value-label">CMYK</span>
+            <span class="value-text" id="cmykValue"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add Color Picker Section -->
+    <section class="color-picker-section">
+      <input type="color" class="color-input" id="colorPicker">
+    </section>
+
+    <!-- Add Palette Preview Section -->
+    <section class="palette-preview-section">
+      <div class="palette-preview" id="palettePreview"></div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="basic">
+        <svg width="16" height="16" viewBox="0 0 24 24">
+          <path d="M12 2l9 4v12l-9 4-9-4V6l9-4z"/>
+        </svg>
+        Basic
+      </button>
+      <button class="tab" data-tab="advanced">
+        <svg width="16" height="16" viewBox="0 0 24 24">
+          <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.65.07-.97 0-.32-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.488.488 0 0 0 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65z"/>
+        </svg>
+        Advanced
+      </button>
+      <button class="tab" data-tab="harmonies">
+        <svg width="16" height="16" viewBox="0 0 24 24">
+          <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+        </svg>
+        Harmonies
+      </button>
+      <button class="tab" data-tab="blend">
+        <svg width="16" height="16" viewBox="0 0 24 24">
+          <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/>
+          <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/>
+        </svg>
+        Blend
+      </button>
+      <button class="tab" data-tab="library">
+        <svg width="16" height="16" viewBox="0 0 24 24">
+          <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/>
+        </svg>
+        Library
+      </button>
+      <button class="tab" data-tab="trending">
+        <svg width="16" height="16" viewBox="0 0 24 24">
+          <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+        </svg>
+        Trending
+      </button>
+      <button class="tab" data-tab="palettes">
+        <svg width="16" height="16" viewBox="0 0 24 24">
+          <path d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0 1 12 22zm0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8c.28 0 .5-.22.5-.5a.54.54 0 0 0-.14-.35c-.41-.46-.63-1.05-.63-1.65a2.5 2.5 0 0 1 2.5-2.5H16c2.21 0 4-1.79 4-4 0-3.86-3.59-7-8-7z"/>
+          <circle cx="6.5" cy="11.5" r="1.5"/>
+          <circle cx="9.5" cy="7.5" r="1.5"/>
+          <circle cx="14.5" cy="7.5" r="1.5"/>
+          <circle cx="17.5" cy="11.5" r="1.5"/>
+        </svg>
+        Palettes
+      </button>
+    </nav>
+    
+    <!-- Tab Content Sections -->
+    <div class="tab-content-wrapper">
+      <!-- Basic Tab -->
+      <section class="tab-content active" id="basicTab">
+        <div class="export-section">
+          <h3>Export Options</h3>
+          <div class="export-buttons">
+            <button class="export-btn" data-format="css" data-tooltip="Copy as CSS color values">Copy CSS</button>
+            <button class="export-btn" data-format="sass" data-tooltip="Copy as SASS variables">Copy SASS</button>
+            <button class="export-btn" data-format="tailwind" data-tooltip="Copy as Tailwind config">Copy Tailwind</button>
+          </div>
+        </div>
+
+        <div class="history-section">
+          <h3 data-tooltip="Recently used colors">History</h3>
+          <div class="color-history" id="colorHistory"></div>
+        </div>
+      </section>
+
+      <!-- Advanced Tab -->
+      <section class="tab-content" id="advancedTab">
+        <!-- Color Adjustment Section -->
+        <div class="advanced-section">
+          <h3>
+            Color Adjustments
+            <button class="reset-btn" id="resetSliders" title="Reset to default">
+              <svg width="14" height="14" viewBox="0 0 24 24">
+                <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+              </svg>
+            </button>
+          </h3>
+          <div class="slider-group">
+            <div class="slider-row">
+              <span class="slider-label" data-tooltip="Color hue from 0 to 360">Hue</span>
+              <input type="range" class="slider hue" id="hueSlider" min="0" max="360" value="0">
+              <span class="slider-value" id="hueValue">0</span>
+            </div>
+            <div class="slider-row">
+              <span class="slider-label" data-tooltip="Color intensity from 0% to 100%">Saturation</span>
+              <input type="range" class="slider" id="satSlider" min="0" max="100" value="100">
+              <span class="slider-value" id="satValue">100%</span>
+            </div>
+            <div class="slider-row">
+              <span class="slider-label" data-tooltip="Color brightness from 0% to 100%">Lightness</span>
+              <input type="range" class="slider" id="lightSlider" min="0" max="100" value="50">
+              <span class="slider-value" id="lightValue">50%</span>
+            </div>
+            <div class="slider-row">
+              <span class="slider-label" data-tooltip="Color transparency from 0% to 100%">Opacity</span>
+              <input type="range" class="slider" id="alphaSlider" min="0" max="100" value="100">
+              <span class="slider-value" id="alphaValue">100%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Harmonies Tab -->
+      <section class="tab-content" id="harmoniesTab">
+        <div class="harmony-types">
+          <button class="harmony-btn active" data-harmony="complementary" data-tooltip="Colors opposite on the color wheel">Complementary</button>
+          <button class="harmony-btn" data-harmony="analogous" data-tooltip="Colors adjacent on the color wheel">Analogous</button>
+          <button class="harmony-btn" data-harmony="triadic" data-tooltip="Three evenly spaced colors">Triadic</button>
+          <button class="harmony-btn" data-harmony="tetradic" data-tooltip="Four evenly spaced colors">Tetradic</button>
+          <button class="harmony-btn" data-harmony="split" data-tooltip="Split-complementary colors">Split</button>
+        </div>
+        <div class="harmony-display" id="harmonyDisplay">
+          <div class="harmony-color" id="complementary"></div>
+          <div class="harmony-color" id="analogous1"></div>
+          <div class="harmony-color" id="analogous2"></div>
+          <div class="harmony-color" id="tetradic1"></div>
+          <div class="harmony-color" id="tetradic2"></div>
+          <div class="harmony-color" id="split1"></div>
+          <div class="harmony-color" id="split2"></div>
+        </div>
+        <button class="save-palette-btn" id="saveToPalette">Save as Palette</button>
+      </section>
+
+      <!-- Blend Tab -->
+      <section class="tab-content" id="blendTab">
+        <div class="blend-section">
+          <h3>Color Blending</h3>
+          <div class="color-blend">
+            <div class="blend-colors">
+              <div class="blend-color-wrapper">
+                <div class="blend-color" id="blendColor1"></div>
+                <span>Color 1</span>
+              </div>
+              
+              <div class="blend-mode-wrapper">
+                <select id="blendMode" class="blend-mode-select" data-tooltip="Choose how colors blend together">
+                  <option value="multiply" data-tooltip="Multiplies colors together">Multiply</option>
+                  <option value="screen" data-tooltip="Lightens by inverting, multiplying, and inverting back">Screen</option>
+                  <option value="overlay" data-tooltip="Combines multiply and screen">Overlay</option>
+                  <option value="darken" data-tooltip="Selects the darker color">Darken</option>
+                  <option value="lighten" data-tooltip="Selects the lighter color">Lighten</option>
+                  <option value="color-dodge" data-tooltip="Color Dodge">Color Dodge</option>
+                  <option value="color-burn" data-tooltip="Color Burn">Color Burn</option>
+                  <option value="hard-light" data-tooltip="Hard Light">Hard Light</option>
+                  <option value="soft-light" data-tooltip="Soft Light">Soft Light</option>
+                  <option value="difference" data-tooltip="Difference">Difference</option>
+                  <option value="exclusion" data-tooltip="Exclusion">Exclusion</option>
+                </select>
+              </div>
+
+              <div class="blend-color-wrapper">
+                <div class="blend-color" id="blendColor2"></div>
+                <span>Color 2</span>
+              </div>
+            </div>
+
+            <div class="blend-result-wrapper">
+              <div class="blend-result" id="blendResult"></div>
+              <span>Result</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Library Tab -->
+      <section class="tab-content" id="libraryTab">
+        <div class="library-section">
+          <div class="color-categories">
+            <div class="category">
+              <h3>Basic Colors</h3>
+              <div class="color-grid" id="basicColors"></div>
+            </div>
+            
+            <div class="category">
+              <h3>Web Safe Colors</h3>
+              <div class="color-grid" id="webSafeColors"></div>
+            </div>
+            
+            <div class="category">
+              <h3>Material Design</h3>
+              <div class="color-grid" id="materialColors"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trending Tab -->
+      <section class="tab-content" id="trendingTab">
+        <div class="trending-sections">
+          <div class="section">
+            <h3>Trending Colors</h3>
+            <div class="trending-colors" id="trendingColors"></div>
+          </div>
+          
+          <div class="section">
+            <h3>Seasonal Palettes</h3>
+            <div class="seasonal-palettes" id="seasonalPalettes">
+              <div class="season-selector">
+                <button class="season-btn active" data-season="spring">Spring</button>
+                <button class="season-btn" data-season="summer">Summer</button>
+                <button class="season-btn" data-season="autumn">Autumn</button>
+                <button class="season-btn" data-season="winter">Winter</button>
+              </div>
+              <div class="season-colors" id="seasonColors"></div>
+            </div>
+          </div>
+          
+          <div class="section">
+            <h3>Popular Combinations</h3>
+            <div class="popular-combinations" id="popularCombinations"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Palettes Tab -->
+      <section class="tab-content" id="palettesTab">
+        <div class="palette-management">
+          <div class="palette-creation">
+            <input type="text" id="paletteName" placeholder="New palette name...">
+            <button id="createPalette" class="create-palette-btn">Create Palette</button>
+          </div>
+          <div class="saved-palettes" id="savedPalettes"></div>
+          <div class="palette-export">
+            <select id="exportFormat" class="export-format-select">
+              <option value="json">JSON</option>
+              <option value="ase">Adobe Swatch (ASE)</option>
+              <option value="sketchpalette">Sketch Palette</option>
+              <option value="css">CSS Variables</option>
+              <option value="scss">SCSS Variables</option>
+              <option value="figma">Figma Styles</option>
+            </select>
+            <button id="exportPalettes" class="export-btn">Export Palettes</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Notifications -->
+  <div class="notifications-wrapper">
+    <div class="color-name-preview" id="colorNamePreview">
+      <span class="color-name"></span>
+      <span class="color-code"></span>
+    </div>
+    <div class="copy-notification" id="copyNotification">
+      <span class="notification-text">Copied!</span>
+    </div>
+  </div>
+</body>
+</html> 

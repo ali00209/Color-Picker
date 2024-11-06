@@ -1,66 +1,66 @@
-# Screen Recorder v1.3
+# Color Picker Pro
 
-A Firefox browser extension for high-quality screen recording with professional features and an intuitive interface.
+A professional color picker browser extension with advanced features including color harmonies, palettes, and color theory tools.
 
-[![Download from Firefox Add-ons](https://img.shields.io/badge/Firefox-Download-orange?logo=firefox)](https://addons.mozilla.org/en-US/firefox/addon/screen-recorder-pro/)
+## Features
 
-## Core Features
-- Screen recording with audio support
-- Resolution selection up to 4K (3840x2160)
-- WebM format recording with optimized bitrates
-- Recording history with secure playback
+### Basic Color Picking
+- Color picker with hex, RGB, HSL, and CMYK formats
+- Color history tracking
+- One-click color copying
+- Alpha channel support
+
+### Advanced Color Tools
+- HSL color adjustment sliders
+- Real-time color preview
+- Color value conversion between formats
+- Color blending with multiple blend modes
+
+### Color Harmonies
+- Complementary colors
+- Analogous colors
+- Triadic colors
+- Tetradic colors
+- Split-complementary colors
+
+### Palette Management
+- Save custom color palettes
+- Export palettes in multiple formats:
+  - JSON
+  - Adobe Swatch Exchange (ASE)
+  - Sketch Palette
+  - CSS Variables
+  - SCSS Variables
+  - Figma Styles
+- Import/Export functionality
+
+### Color Library
+- Basic color presets
+- Web-safe colors
+- Material Design colors
+- Trending colors
+- Seasonal palettes
+
+### Additional Features
 - Dark/Light theme support
-- Minimal mode interface
-- Countdown timer option
-
-## Technical Specifications
-
-### Video & Audio
-- Resolution presets from 360p to 4K
-- Optimized bitrates:
-  - 4K: 35-55 Mbps
-  - 2K: 25-40 Mbps
-  - Full HD: 12-20 Mbps
-- WebM format with optimized encoding
-- High-quality audio capture
-
-### Security Features
-- Secure DOM manipulation
-- Protocol error handling
-- Structured error reporting
-- Safe local storage implementation
-- Content security policy compliance
-
-### Storage & Management
-- Local storage for settings
-- IndexedDB for recording history
-- Unlimited storage for large recordings
-- Automatic file naming with timestamps
-
-## Browser Compatibility
-- Firefox 79.0 or later
-- Optimized for Firefox's Screen Capture API
-- WebM format support required
+- Responsive design
+- Local storage for settings and palettes
+- Keyboard shortcuts
+- Color accessibility information
 
 ## Installation
-1. Install from [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/screen-recorder-pro/)
-2. Click extension icon to launch
-3. Select recording settings
-4. Choose screen area
-5. Start recording
 
-## Troubleshooting
+### Firefox
+1. Download the latest release from the releases page
+2. Open Firefox and go to [`Firefox Add-ons`](https://addons.mozilla.org/en-US/firefox/addon/color-picker-pro/)
+3. Click "This Firefox" in the sidebar
+4. Click "Load Temporary Add-on"
+5. Navigate to the downloaded file and select it
 
-### Common Issues
-- **Permission Denied**: Ensure Firefox has screen sharing permissions
-- **Recording Failed**: Check available disk space and browser permissions
-- **Audio Issues**: Verify microphone access and system audio settings
-- **Extension Invalid**: Try reinstalling the extension
+## Development
 
-### Performance Tips
-- Close unnecessary tabs during recording
-- Use recommended resolution for your system
-- Enable hardware acceleration in Firefox
-- Monitor available disk space
+### Prerequisites
+- Web browser (Firefox)
+- Basic knowledge of HTML, CSS, and JavaScript
 
-_For updates and more information, visit our [GitHub repository](https://github.com/ali00209/Screen-Recoder-)._
+For updates and more information, visit our [GitHub repository](https://github.com/ali00209/Color-Picker).
