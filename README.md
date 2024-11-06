@@ -41,7 +41,7 @@ A professional color picker browser extension with advanced features including c
 - Web-safe colors
 - Material Design colors
 - Trending colors
-- Seasonal palette
+- Seasonal palettes
 
 ### Additional Features
 - Dark/Light theme support
