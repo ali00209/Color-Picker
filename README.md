@@ -2,6 +2,8 @@
 
 A professional color picker browser extension with advanced features including color harmonies, palettes, and color theory tools.
 
+[![Download from Firefox Add-ons](https://img.shields.io/badge/Firefox-Download-orange?logo=firefox)](https://addons.mozilla.org/en-US/firefox/addon/color-picker-pro/)
+
 ## Features
 
 ### Basic Color Picking
