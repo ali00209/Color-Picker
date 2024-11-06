@@ -41,7 +41,7 @@ A professional color picker browser extension with advanced features including c
 - Web-safe colors
 - Material Design colors
 - Trending colors
-- Seasonal palettes
+- Seasonal palette
 
 ### Additional Features
 - Dark/Light theme support
@@ -49,15 +49,6 @@ A professional color picker browser extension with advanced features including c
 - Local storage for settings and palettes
 - Keyboard shortcuts
 - Color accessibility information
-
-## Installation
-
-### Firefox
-1. Download the latest release from the releases page
-2. Open Firefox and go to [`Firefox Add-ons`](https://addons.mozilla.org/en-US/firefox/addon/color-picker-pro/)
-3. Click "This Firefox" in the sidebar
-4. Click "Load Temporary Add-on"
-5. Navigate to the downloaded file and select it
 
 ## Development
 
